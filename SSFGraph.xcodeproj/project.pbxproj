@@ -12,6 +12,7 @@
 		918C454720A2EEB800F4AE25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 918C454520A2EEB800F4AE25 /* Main.storyboard */; };
 		918C454920A2EEB900F4AE25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 918C454820A2EEB900F4AE25 /* Assets.xcassets */; };
 		918C454C20A2EEB900F4AE25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 918C454A20A2EEB900F4AE25 /* LaunchScreen.storyboard */; };
+		918C455820A2F6C000F4AE25 /* SSFGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C455720A2F6C000F4AE25 /* SSFGraph.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		918C454820A2EEB900F4AE25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		918C454B20A2EEB900F4AE25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		918C454D20A2EEB900F4AE25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		918C455720A2F6C000F4AE25 /* SSFGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFGraph.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,31 @@
 		918C454020A2EEB700F4AE25 /* SSFGraph */ = {
 			isa = PBXGroup;
 			children = (
-				918C454120A2EEB700F4AE25 /* AppDelegate.swift */,
-				918C454320A2EEB700F4AE25 /* ViewController.swift */,
-				918C454520A2EEB800F4AE25 /* Main.storyboard */,
-				918C454820A2EEB900F4AE25 /* Assets.xcassets */,
-				918C454A20A2EEB900F4AE25 /* LaunchScreen.storyboard */,
-				918C454D20A2EEB900F4AE25 /* Info.plist */,
+				918C455620A2F3B800F4AE25 /* Main */,
+				918C455320A2F2DD00F4AE25 /* Supporting */,
 			);
 			path = SSFGraph;
+			sourceTree = "<group>";
+		};
+		918C455320A2F2DD00F4AE25 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				918C454A20A2EEB900F4AE25 /* LaunchScreen.storyboard */,
+				918C454120A2EEB700F4AE25 /* AppDelegate.swift */,
+				918C454D20A2EEB900F4AE25 /* Info.plist */,
+				918C454820A2EEB900F4AE25 /* Assets.xcassets */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		918C455620A2F3B800F4AE25 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				918C454320A2EEB700F4AE25 /* ViewController.swift */,
+				918C454520A2EEB800F4AE25 /* Main.storyboard */,
+				918C455720A2F6C000F4AE25 /* SSFGraph.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +156,7 @@
 			files = (
 				918C454420A2EEB800F4AE25 /* ViewController.swift in Sources */,
 				918C454220A2EEB700F4AE25 /* AppDelegate.swift in Sources */,
+				918C455820A2F6C000F4AE25 /* SSFGraph.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +302,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MYUZ5TW9JQ;
-				INFOPLIST_FILE = SSFGraph/Info.plist;
+				INFOPLIST_FILE = SSFGraph/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +320,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MYUZ5TW9JQ;
-				INFOPLIST_FILE = SSFGraph/Info.plist;
+				INFOPLIST_FILE = SSFGraph/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
