@@ -109,6 +109,15 @@ extension CGContext {
     }
     
     func draw(_ diagram: Diagram, in bounds: CGRect) {
-        
+        switch diagram {
+        case let .primitive(size, primitive):
+            let bounds = size.fit(into: bounds, alignment: CGPoint(x: 0.5, y: 0.5))
+            draw(primitive, in: bounds)
+        case let .align(alignment, diagram):
+            let bounds = diagram.size.fit(into: bounds, alignment: alignment)
+            draw(diagram, in: bounds)
+        default:
+            <#code#>
+        }
     }
 }
