@@ -116,8 +116,32 @@ extension CGContext {
         case let .align(alignment, diagram):
             let bounds = diagram.size.fit(into: bounds, alignment: alignment)
             draw(diagram, in: bounds)
-        default:
-            <#code#>
+        case let .beside(left, right):
+            let (lbounds, rbounds) = bounds.split(ratio: left.size.width/diagram.size.width, edge: .minXEdge)
+            draw(left, in: lbounds)
+            draw(right, in: rbounds)
+        case let .below(up, down):
+            let (upBounds, downBounds) = bounds.split(ratio: up.size.height/diagram.size.height, edge: .minYEdge)
+            draw(up, in: upBounds)
+            draw(down, in: downBounds)
+        case let .attribute(.fillcolor(color), diagram):
+            saveGState()
+            color.set()
+            draw(diagram, in: bounds)
+            restoreGState()
         }
+    }
+}
+
+extension CGRect {
+    func split(ratio: CGFloat, edge: CGRectEdge) -> (CGRect, CGRect) {
+        let length = edge.isHorizontal ? width : height
+        return divided(atDistance:length * ratio, from:edge)
+    }
+}
+
+extension CGRectEdge {
+    var isHorizontal: Bool {
+        return self == .maxXEdge || self == .minXEdge
     }
 }
