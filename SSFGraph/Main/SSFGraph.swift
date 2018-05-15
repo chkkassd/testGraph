@@ -46,6 +46,35 @@ extension Diagram {
             return d.size
         }
     }
+    
+    init() {
+        self = .primitive(CGSize(width: 0, height: 0), .rectangle)
+    }
+    
+    //MARK: Combinator
+    static func rect(width: CGFloat, height: CGFloat) -> Diagram {
+        return .primitive(CGSize(width: width, height: height), .rectangle)
+    }
+    
+    static func circle(diameter: CGFloat) -> Diagram {
+        return .primitive(CGSize(width: diameter, height: diameter), .ellipse)
+    }
+    
+    static func text(theText: String, width: CGFloat, height: CGFloat) -> Diagram {
+        return .primitive(CGSize(width: width, height: height), .text(theText))
+    }
+    
+    static func square(side: CGFloat) -> Diagram {
+        return rect(width: side, height: side)
+    }
+    
+    func filled(_ color: UIColor) -> Diagram {
+        return .attribute(.fillcolor(color), self)
+    }
+    
+    func aligned(to position: CGPoint) -> Diagram {
+        return .align(position, self)
+    }
 }
 
 extension CGSize {
@@ -72,6 +101,12 @@ extension CGSize {
 }
 
 extension CGPoint {
+    static let top = CGPoint(x: 0.5, y: 0)
+    static let bottom = CGPoint(x: 0.5, y: 1)
+    static let center = CGPoint(x: 0.5, y: 0.5)
+    static let left = CGPoint(x: 0, y: 0.5)
+    static let right = CGPoint(x: 1, y: 0.5)
+    
     var size: CGSize {
         return CGSize(width: self.x, height: self.y)
     }
@@ -144,4 +179,26 @@ extension CGRectEdge {
     var isHorizontal: Bool {
         return self == .maxXEdge || self == .minXEdge
     }
+}
+
+//MARK: Combinator
+precedencegroup VerticalCombination {
+    associativity: left
+}
+
+precedencegroup HorizontalCombination {
+    higherThan: VerticalCombination
+    associativity: left
+}
+
+infix operator ||| : HorizontalCombination
+
+func |||(l: Diagram, r: Diagram) -> Diagram {
+    return .beside(l, r)
+}
+
+infix operator --- : VerticalCombination
+
+func ---(top: Diagram, bottom: Diagram) -> Diagram {
+    return .below(top, bottom)
 }
