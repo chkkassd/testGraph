@@ -47,6 +47,7 @@ extension Diagram {
         }
     }
     
+    //inital a nill graph
     init() {
         self = .primitive(CGSize(width: 0, height: 0), .rectangle)
     }
@@ -101,6 +102,7 @@ extension CGSize {
 }
 
 extension CGPoint {
+    //discrible the align
     static let top = CGPoint(x: 0.5, y: 0)
     static let bottom = CGPoint(x: 0.5, y: 1)
     static let center = CGPoint(x: 0.5, y: 0.5)
@@ -146,7 +148,7 @@ extension CGContext {
     func draw(_ diagram: Diagram, in bounds: CGRect) {
         switch diagram {
         case let .primitive(size, primitive):
-            let bounds = size.fit(into: bounds, alignment: CGPoint(x: 0.5, y: 0.5))
+            let bounds = size.fit(into: bounds, alignment: CGPoint.center)
             draw(primitive, in: bounds)
         case let .align(alignment, diagram):
             let bounds = diagram.size.fit(into: bounds, alignment: alignment)
@@ -201,4 +203,16 @@ infix operator --- : VerticalCombination
 
 func ---(top: Diagram, bottom: Diagram) -> Diagram {
     return .below(top, bottom)
+}
+
+extension Sequence where Iterator.Element == Diagram {
+    //combine diagram of a sequence in horizontal
+    var hcat: Diagram {
+        return reduce(Diagram(), |||)
+    }
+    
+    //combine diagram of a sequence in vertical
+    var vcat: Diagram {
+        return reduce(Diagram(), ---)
+    }
 }

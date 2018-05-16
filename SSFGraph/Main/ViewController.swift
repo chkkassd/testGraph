@@ -10,16 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var graphView : GraphView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        graphView = GraphView(frame: CGRect(x: 0, y: 50, width: 400, height: 100))
+        self.view.addSubview(graphView)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func viewWidthChanged(_ sender: UISlider) {
+        let width = Double(400.0 * sender.value)
+        graphView.frame = CGRect(x: 0.0, y: 50.0, width: width, height: 100.0)
+        graphView.setNeedsDisplay()
     }
-
-
 }
 
