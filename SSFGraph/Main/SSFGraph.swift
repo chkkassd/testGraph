@@ -11,19 +11,14 @@ import UIKit
 import CoreGraphics
 
 //The primitive of a graph,such as rectangle,text and so on.
-enum Primitive {
+public enum Primitive {
     case ellipse
     case rectangle
     case text(String)
 }
 
-//The attribute of a diagram
-enum Attribute {
-    case fillcolor(UIColor)
-}
-
 //Use this enum to describe graph including size,poisition,attribute and so on.And we use recursion.
-indirect enum Diagram {
+public indirect enum Diagram {
     case primitive(CGSize, Primitive)
     case beside(Diagram, Diagram)
     case below(Diagram, Diagram)
@@ -31,8 +26,13 @@ indirect enum Diagram {
     case align(CGPoint, Diagram)
 }
 
+//The attribute of a diagram
+public enum Attribute {
+    case fillcolor(UIColor)
+}
+
 extension Diagram {
-    var size: CGSize {
+    fileprivate var size: CGSize {
         switch self {
         case .primitive(let size, _):
             return size
@@ -48,36 +48,37 @@ extension Diagram {
     }
     
     //inital a nill graph
-    init() {
+    public init() {
         self = .primitive(CGSize(width: 0, height: 0), .rectangle)
     }
     
-    //MARK: Combinator
-    static func rect(width: CGFloat, height: CGFloat) -> Diagram {
+    // convinous function
+    static public func rect(width: CGFloat, height: CGFloat) -> Diagram {
         return .primitive(CGSize(width: width, height: height), .rectangle)
     }
     
-    static func circle(diameter: CGFloat) -> Diagram {
+    static public func circle(diameter: CGFloat) -> Diagram {
         return .primitive(CGSize(width: diameter, height: diameter), .ellipse)
     }
     
-    static func text(theText: String, width: CGFloat, height: CGFloat) -> Diagram {
+    static public func text(theText: String, width: CGFloat, height: CGFloat) -> Diagram {
         return .primitive(CGSize(width: width, height: height), .text(theText))
     }
     
-    static func square(side: CGFloat) -> Diagram {
+    static public func square(side: CGFloat) -> Diagram {
         return rect(width: side, height: side)
     }
     
-    func filled(_ color: UIColor) -> Diagram {
+    public func filled(_ color: UIColor) -> Diagram {
         return .attribute(.fillcolor(color), self)
     }
     
-    func aligned(to position: CGPoint) -> Diagram {
+    public func aligned(to position: CGPoint) -> Diagram {
         return .align(position, self)
     }
 }
 
+//MARK: Fit
 extension CGSize {
     /**
      Fit a size to a rect,and make sure that the width height ratio stays the same,and then sacle it based on the incoming rectangle, and then adjust the position.
@@ -89,49 +90,50 @@ extension CGSize {
      PETER SHI
      - date: 2018.5.10
      */
-    func fit(into rect: CGRect, alignment: CGPoint) -> CGRect {
+    fileprivate func fit(into rect: CGRect, alignment: CGPoint) -> CGRect {
         let scale = min(rect.width/self.width, rect.height/self.height)
         let targetSize = scale * self
         let spacerSize = alignment.size * (rect.size - targetSize)
         return CGRect(origin: rect.origin + spacerSize.point, size: targetSize)
     }
 
-    var point: CGPoint {
+    fileprivate var point: CGPoint {
         return CGPoint(x: self.width, y: self.height)
     }
 }
 
 extension CGPoint {
     //discrible the align
-    static let top = CGPoint(x: 0.5, y: 0)
-    static let bottom = CGPoint(x: 0.5, y: 1)
-    static let center = CGPoint(x: 0.5, y: 0.5)
-    static let left = CGPoint(x: 0, y: 0.5)
-    static let right = CGPoint(x: 1, y: 0.5)
+    static public let top = CGPoint(x: 0.5, y: 0)
+    static public let bottom = CGPoint(x: 0.5, y: 1)
+    static public let center = CGPoint(x: 0.5, y: 0.5)
+    static public let left = CGPoint(x: 0, y: 0.5)
+    static public let right = CGPoint(x: 1, y: 0.5)
     
-    var size: CGSize {
+    fileprivate var size: CGSize {
         return CGSize(width: self.x, height: self.y)
     }
 }
 
-func *(l: CGFloat, r: CGSize) -> CGSize {
+fileprivate func *(l: CGFloat, r: CGSize) -> CGSize {
     return CGSize(width: r.width * l, height: r.height * l)
 }
 
-func *(l: CGSize, r: CGSize) -> CGSize {
-    return CGSize(width: r.width * l.width, height: r.height * l.width)
+fileprivate func *(l: CGSize, r: CGSize) -> CGSize {
+    return CGSize(width: r.width * l.width, height: r.height * l.height)
 }
 
-func -(l: CGSize, r: CGSize) -> CGSize {
+fileprivate func -(l: CGSize, r: CGSize) -> CGSize {
     return CGSize(width: l.width - r.width, height: l.height - r.height)
 }
 
-func +(l: CGPoint, r: CGPoint) -> CGPoint {
+fileprivate func +(l: CGPoint, r: CGPoint) -> CGPoint {
     return CGPoint(x: l.x + r.x, y: l.y + r.y)
 }
 
+//MARK: Draw
 extension CGContext {
-    func draw(_ primitive: Primitive, in frame: CGRect) {
+    public func draw(_ primitive: Primitive, in frame: CGRect) {
         switch primitive {
         case .rectangle:
             fill(frame)
@@ -145,7 +147,7 @@ extension CGContext {
         }
     }
     
-    func draw(_ diagram: Diagram, in bounds: CGRect) {
+    public func draw(_ diagram: Diagram, in bounds: CGRect) {
         switch diagram {
         case let .primitive(size, primitive):
             let bounds = size.fit(into: bounds, alignment: CGPoint.center)
@@ -171,14 +173,14 @@ extension CGContext {
 }
 
 extension CGRect {
-    func split(ratio: CGFloat, edge: CGRectEdge) -> (CGRect, CGRect) {
+    fileprivate func split(ratio: CGFloat, edge: CGRectEdge) -> (CGRect, CGRect) {
         let length = edge.isHorizontal ? width : height
         return divided(atDistance:length * ratio, from:edge)
     }
 }
 
 extension CGRectEdge {
-    var isHorizontal: Bool {
+    fileprivate var isHorizontal: Bool {
         return self == .maxXEdge || self == .minXEdge
     }
 }
@@ -207,12 +209,20 @@ func ---(top: Diagram, bottom: Diagram) -> Diagram {
 
 extension Sequence where Iterator.Element == Diagram {
     //combine diagram of a sequence in horizontal
-    var hcat: Diagram {
+    public var hcat: Diagram {
         return reduce(Diagram(), |||)
     }
     
     //combine diagram of a sequence in vertical
-    var vcat: Diagram {
+    public var vcat: Diagram {
         return reduce(Diagram(), ---)
+    }
+}
+
+extension Sequence where Iterator.Element == CGFloat {
+    //normalize the value of input, the max is 1.
+    public var normalized: [CGFloat] {
+        let maxValue = reduce(0, Swift.max)
+        return map {$0/maxValue}
     }
 }
