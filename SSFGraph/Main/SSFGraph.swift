@@ -15,6 +15,22 @@ public enum Primitive {
     case ellipse
     case rectangle
     case text(String)
+    case line(CGPoint, CGPoint)
+    
+    var lineMonotonicity: Monotonicity {
+        switch self {
+        case let .line(sPoint, ePoint):
+            if sPoint.y < ePoint.y {
+                return .increase
+            } else if sPoint.y == ePoint.y {
+                return .none
+            } else {
+            return .decrease
+            }
+        default:
+            return .none
+        }
+    }
 }
 
 //Use this enum to describe graph including size,poisition,attribute and so on.And we use recursion.
@@ -28,7 +44,13 @@ public indirect enum Diagram {
 
 //The attribute of a diagram
 public enum Attribute {
-    case fillcolor(UIColor)
+    case fillColor(UIColor)
+}
+
+enum Monotonicity {
+    case increase
+    case decrease
+    case none
 }
 
 extension Diagram {
@@ -52,7 +74,7 @@ extension Diagram {
         self = .primitive(CGSize(width: 0, height: 0), .rectangle)
     }
     
-    // convinous function
+    // convenience function
     static public func rect(width: CGFloat, height: CGFloat) -> Diagram {
         return .primitive(CGSize(width: width, height: height), .rectangle)
     }
@@ -69,8 +91,12 @@ extension Diagram {
         return rect(width: side, height: side)
     }
     
+    static public func straightLine(startPoint: CGPoint, endPoint: CGPoint) -> Diagram {
+        return .primitive(startPoint.sizeWithPoint(endPoint), .line(startPoint, endPoint))
+    }
+    
     public func filled(_ color: UIColor) -> Diagram {
-        return .attribute(.fillcolor(color), self)
+        return .attribute(.fillColor(color), self)
     }
     
     public func aligned(to position: CGPoint) -> Diagram {
@@ -113,6 +139,10 @@ extension CGPoint {
     fileprivate var size: CGSize {
         return CGSize(width: self.x, height: self.y)
     }
+    
+    fileprivate func sizeWithPoint(_ anotherPoint: CGPoint) -> CGSize {
+        return CGSize(width: abs(self.x - anotherPoint.x), height: abs(self.y - anotherPoint.y))
+    }
 }
 
 fileprivate func *(l: CGFloat, r: CGSize) -> CGSize {
@@ -144,11 +174,19 @@ extension CGContext {
             let attributes = [NSAttributedStringKey.font: font]
             let attributedText = NSAttributedString(string: text, attributes: attributes)
             attributedText.draw(in: frame)
+        case let .line(startPoint, endPoint):
+            move(to: startPoint)
+            addLine(to: endPoint)
+            strokePath()
         }
     }
     
     public func draw(_ diagram: Diagram, in bounds: CGRect) {
         switch diagram {
+        case let .primitive(size, .line(sPoint, ePoint)):
+            let bounds = size.fit(into: bounds, alignment: CGPoint.center)
+            let (fitPoint1, fitPoint2) = bounds.fitPoints(monotonicity: Primitive.line(sPoint, ePoint).lineMonotonicity)
+            draw(.line(fitPoint1, fitPoint2), in: bounds)
         case let .primitive(size, primitive):
             let bounds = size.fit(into: bounds, alignment: CGPoint.center)
             draw(primitive, in: bounds)
@@ -163,7 +201,7 @@ extension CGContext {
             let (upBounds, downBounds) = bounds.split(ratio: up.size.height/diagram.size.height, edge: .minYEdge)
             draw(up, in: upBounds)
             draw(down, in: downBounds)
-        case let .attribute(.fillcolor(color), diagram):
+        case let .attribute(.fillColor(color), diagram):
             saveGState()
             color.set()
             draw(diagram, in: bounds)
@@ -176,6 +214,17 @@ extension CGRect {
     fileprivate func split(ratio: CGFloat, edge: CGRectEdge) -> (CGRect, CGRect) {
         let length = edge.isHorizontal ? width : height
         return divided(atDistance:length * ratio, from:edge)
+    }
+    
+    fileprivate func fitPoints(monotonicity: Monotonicity) -> (CGPoint, CGPoint) {
+        switch monotonicity {
+        case .increase:
+            return (CGPoint(x: self.origin.x, y: self.origin.y + self.size.height), CGPoint(x: self.origin.x + self.size.width, y: self.origin.y))
+        case .decrease:
+            return (self.origin, CGPoint(x: self.origin.x + self.size.width, y: self.origin.y + self.size.height))
+        case .none:
+            return (self.origin, CGPoint(x: self.origin.x + self.size.width, y: self.origin.y))
+        }
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SSFLineGraphView: UIView {
+class SSFLineGraphView: UIView, SSFLineGraphProtocol {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +24,7 @@ class SSFLineGraphView: UIView {
     convenience public init(frame: CGRect, backgroundColor: UIColor, sourceData: [(String, Double)]) {
         self.init(frame: frame)
         self.backgroundColor = backgroundColor
-//        combinedDiagram = barGraph(sourceData: sourceData)
+        combinedDiagram = lineGraph(sourceData: sourceData)
     }
     
     override func draw(_ rect: CGRect) {
