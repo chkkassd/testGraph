@@ -12,6 +12,7 @@ import CoreGraphics
 
 //The primitive of a graph,such as rectangle,text and so on.
 public enum Primitive {
+    
     case ellipse
     case rectangle
     case text(String)
@@ -51,6 +52,14 @@ enum Monotonicity {
     case increase
     case decrease
     case none
+}
+
+//Represent the border of a rect
+public enum BorderDirection {
+    case topBorder
+    case bottomBorder
+    case leftBorder
+    case rightBorder
 }
 
 extension Diagram {
@@ -101,6 +110,51 @@ extension Diagram {
     
     public func aligned(to position: CGPoint) -> Diagram {
         return .align(position, self)
+    }
+    
+    //return every primitive's top(bottom or left or right) border center point
+    public func pointsOfPrimitive(_ rect: CGRect, direction: BorderDirection, primitiveType: Primitive, points: inout [CGPoint]) {
+        switch self {
+        case let .primitive(size, primitive):
+            let bounds = size.fit(into: rect, alignment: CGPoint.center)
+            
+            switch primitiveType {
+            case .ellipse:
+                if case .ellipse = primitive {
+                    let point = bounds.borderCenterPoint(direction)
+                    points.append(point)
+                }
+            case .rectangle:
+                if case .rectangle = primitive {
+                    let point = bounds.borderCenterPoint(direction)
+                    points.append(point)
+                }
+            case .text(_):
+                if case .text = primitive {
+                    let point = bounds.borderCenterPoint(direction)
+                    points.append(point)
+                }
+            case .line(_, _):
+                if case .line = primitive {
+                    let point = bounds.borderCenterPoint(direction)
+                    points.append(point)
+                }
+            }
+            
+        case let .align(alignment, diagram):
+            let bounds = diagram.size.fit(into: rect, alignment: alignment)
+            diagram.pointsOfPrimitive(bounds, direction: direction, primitiveType: primitiveType, points: &points)
+        case let .beside(left, right):
+            let (lbounds, rbounds) = rect.split(ratio: left.size.width/self.size.width, edge: .minXEdge)
+            left.pointsOfPrimitive(lbounds, direction: direction, primitiveType: primitiveType, points: &points)
+            right.pointsOfPrimitive(rbounds, direction: direction, primitiveType: primitiveType, points: &points)
+        case let .below(up, down):
+            let (upBounds, downBounds) = rect.split(ratio: up.size.height/self.size.height, edge: .minYEdge)
+            up.pointsOfPrimitive(upBounds, direction: direction, primitiveType: primitiveType, points: &points)
+            down.pointsOfPrimitive(downBounds, direction: direction, primitiveType: primitiveType, points: &points)
+        case let .attribute(.fillColor(_), diagram):
+            diagram.pointsOfPrimitive(rect, direction: direction, primitiveType: primitiveType, points: &points)
+        }
     }
 }
 
@@ -224,6 +278,19 @@ extension CGRect {
             return (self.origin, CGPoint(x: self.origin.x + self.size.width, y: self.origin.y + self.size.height))
         case .none:
             return (self.origin, CGPoint(x: self.origin.x + self.size.width, y: self.origin.y))
+        }
+    }
+    
+    fileprivate func borderCenterPoint(_ direction: BorderDirection) -> CGPoint {
+        switch direction {
+        case .topBorder:
+            return self.origin + CGPoint(x: self.width/2, y: 0.0)
+        case .rightBorder:
+            return self.origin + CGPoint(x: self.width, y: self.height/2)
+        case .bottomBorder:
+            return self.origin + CGPoint(x: self.width/2, y: self.height)
+        case .leftBorder:
+            return self.origin + CGPoint(x: 0.0, y: self.height/2)
         }
     }
 }

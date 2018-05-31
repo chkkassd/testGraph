@@ -15,13 +15,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let data = [("Shanghai", 2500.0),("Beijing", 3200.0),("Houston", 300.0),("New York", 1500.0),("Berlin", 1400.0)]
-        graphView = SSFLineGraphView(frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.width, height: 200), backgroundColor: UIColor.lightGray, sourceData: data)
+        graphView = SSFLineGraphView(frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.width, height: 400), backgroundColor: UIColor.lightGray, sourceData: data)
         self.view.addSubview(graphView)
     }
     
     @IBAction func viewWidthChanged(_ sender: UISlider) {
         let width = Double(Float(UIScreen.main.bounds.width) * sender.value)
-        graphView.frame = CGRect(x: 0.0, y: 50.0, width: width, height: 200.0)
+        graphView.frame = CGRect(x: 0.0, y: 50.0, width: width, height: 400.0)
         graphView.setNeedsDisplay()
     }
 }
