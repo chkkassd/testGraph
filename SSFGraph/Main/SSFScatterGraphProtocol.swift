@@ -1,24 +1,23 @@
 //
-//  SSFLineGraphProtocol.swift
+//  SSFScatterGraphProtocol.swift
 //  SSFGraph
 //
-//  Created by 赛峰 施 on 2018/5/22.
+//  Created by 赛峰 施 on 2018/6/1.
 //  Copyright © 2018年 赛峰 施. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-protocol SSFLineGraphProtocol: SSFBarGraphProtocol {
-    func lineGraph(diagram: Diagram, rect: CGRect) -> [CGPoint]
+protocol SSFScatterGraphViewProtocol: SSFBarGraphProtocol {
+    func scatterGraph(diagram: Diagram, rect: CGRect) -> [(CGPoint, CGFloat)]
 }
 
-extension SSFLineGraphProtocol {
-
-    func lineGraph(diagram: Diagram, rect: CGRect) -> [CGPoint] {
+extension SSFScatterGraphViewProtocol {
+    func scatterGraph(diagram: Diagram, rect: CGRect) -> [(CGPoint, CGFloat)] {
         var points = [(CGPoint, CGRect)]()
         diagram.pointsOfPrimitive(rect, direction: .topBorder, primitiveType: .rectangle, points: &points)
-        return points.map {$0.0}.reject {$0.x.isNaN || $0.y.isNaN}
+        return points.map {($0.0, $0.1.width)}.reject {$0.0.x.isNaN || $0.0.y.isNaN}
     }
     
     func barGraph(sourceData: [(String, Double)]) -> Diagram {
@@ -32,4 +31,3 @@ extension SSFLineGraphProtocol {
         return bars---labels
     }
 }
-

@@ -11,6 +11,8 @@
 		915585DC20AEA7180044E4DD /* SSFLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */; };
 		915585DE20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */; };
 		915585E020C001950044E4DD /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DF20C001940044E4DD /* Utility.swift */; };
+		915585E220C0E8B10044E4DD /* SSFScatterGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */; };
+		915585E420C0E9120044E4DD /* SSFScatterGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */; };
 		918C454220A2EEB700F4AE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C454120A2EEB700F4AE25 /* AppDelegate.swift */; };
 		918C454420A2EEB800F4AE25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C454320A2EEB700F4AE25 /* ViewController.swift */; };
 		918C454720A2EEB800F4AE25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 918C454520A2EEB800F4AE25 /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 		915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFLineGraphView.swift; sourceTree = "<group>"; };
 		915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFLineGraphProtocol.swift; sourceTree = "<group>"; };
 		915585DF20C001940044E4DD /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFScatterGraphView.swift; sourceTree = "<group>"; };
+		915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFScatterGraphProtocol.swift; sourceTree = "<group>"; };
 		918C453E20A2EEB700F4AE25 /* SSFGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSFGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		918C454120A2EEB700F4AE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		918C454320A2EEB700F4AE25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */,
 				915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */,
 				915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */,
+				915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */,
+				915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -169,9 +175,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915585E220C0E8B10044E4DD /* SSFScatterGraphView.swift in Sources */,
 				915585DC20AEA7180044E4DD /* SSFLineGraphView.swift in Sources */,
 				918C454420A2EEB800F4AE25 /* ViewController.swift in Sources */,
 				915585DA20AE7FDE0044E4DD /* SSFBarGraphProtocol.swift in Sources */,
+				915585E420C0E9120044E4DD /* SSFScatterGraphProtocol.swift in Sources */,
 				918C454220A2EEB700F4AE25 /* AppDelegate.swift in Sources */,
 				915585E020C001950044E4DD /* Utility.swift in Sources */,
 				918C455820A2F6C000F4AE25 /* SSFGraph.swift in Sources */,

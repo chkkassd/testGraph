@@ -12,7 +12,6 @@ import CoreGraphics
 
 //The primitive of a graph,such as rectangle,text and so on.
 public enum Primitive {
-    
     case ellipse
     case rectangle
     case text(String)
@@ -112,12 +111,11 @@ extension Diagram {
         return .align(position, self)
     }
     
-    //return every primitive's top(bottom or left or right) border center point
-    public func pointsOfPrimitive(_ rect: CGRect, direction: BorderDirection, primitiveType: Primitive, points: inout [CGPoint]) {
+    //return every primitive's top(bottom or left or right) border center point according the rect
+    public func pointsOfPrimitive(_ rect: CGRect, direction: BorderDirection, primitiveType: Primitive, points: inout [(CGPoint, CGRect)]) {
         switch self {
         case let .primitive(size, primitive):
             let bounds = size.fit(into: rect, alignment: CGPoint.center)
-            
             switch primitiveType {
             case .ellipse:
                 if case .ellipse = primitive {
@@ -140,7 +138,6 @@ extension Diagram {
                     points.append(point)
                 }
             }
-            
         case let .align(alignment, diagram):
             let bounds = diagram.size.fit(into: rect, alignment: alignment)
             diagram.pointsOfPrimitive(bounds, direction: direction, primitiveType: primitiveType, points: &points)
@@ -281,16 +278,16 @@ extension CGRect {
         }
     }
     
-    fileprivate func borderCenterPoint(_ direction: BorderDirection) -> CGPoint {
+    fileprivate func borderCenterPoint(_ direction: BorderDirection) -> (CGPoint, CGRect) {
         switch direction {
         case .topBorder:
-            return self.origin + CGPoint(x: self.width/2, y: 0.0)
+            return (self.origin + CGPoint(x: self.width/2, y: 0.0), self)
         case .rightBorder:
-            return self.origin + CGPoint(x: self.width, y: self.height/2)
+            return (self.origin + CGPoint(x: self.width, y: self.height/2), self)
         case .bottomBorder:
-            return self.origin + CGPoint(x: self.width/2, y: self.height)
+            return (self.origin + CGPoint(x: self.width/2, y: self.height), self)
         case .leftBorder:
-            return self.origin + CGPoint(x: 0.0, y: self.height/2)
+            return (self.origin + CGPoint(x: 0.0, y: self.height/2), self)
         }
     }
 }
