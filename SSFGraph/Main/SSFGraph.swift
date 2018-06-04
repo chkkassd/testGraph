@@ -14,7 +14,7 @@ import CoreGraphics
 public enum Primitive {
     case ellipse
     case rectangle
-    case text(String)
+    case text(String, [TextAttribute: Any])
     case line(CGPoint, CGPoint)
     
     var lineMonotonicity: Monotonicity {
@@ -45,6 +45,13 @@ public indirect enum Diagram {
 //The attribute of a diagram
 public enum Attribute {
     case fillColor(UIColor)
+    case strokeColor(UIColor)
+}
+
+//The attribute of a text
+public enum TextAttribute {
+    case font
+    case textColor
 }
 
 enum Monotonicity {
@@ -91,8 +98,8 @@ extension Diagram {
         return .primitive(CGSize(width: diameter, height: diameter), .ellipse)
     }
     
-    static public func text(theText: String, width: CGFloat, height: CGFloat) -> Diagram {
-        return .primitive(CGSize(width: width, height: height), .text(theText))
+    static public func text(theText: String, width: CGFloat, height: CGFloat, textAttribute: [TextAttribute: Any]) -> Diagram {
+        return .primitive(CGSize(width: width, height: height), .text(theText, textAttribute))
     }
     
     static public func square(side: CGFloat) -> Diagram {
@@ -105,6 +112,10 @@ extension Diagram {
     
     public func filled(_ color: UIColor) -> Diagram {
         return .attribute(.fillColor(color), self)
+    }
+    
+    public func stroked(_ color: UIColor) -> Diagram {
+        return .attribute(.strokeColor(color), self)
     }
     
     public func aligned(to position: CGPoint) -> Diagram {
@@ -149,7 +160,7 @@ extension Diagram {
             let (upBounds, downBounds) = rect.split(ratio: up.size.height/self.size.height, edge: .minYEdge)
             up.pointsOfPrimitive(upBounds, direction: direction, primitiveType: primitiveType, points: &points)
             down.pointsOfPrimitive(downBounds, direction: direction, primitiveType: primitiveType, points: &points)
-        case let .attribute(.fillColor(_), diagram):
+        case let .attribute(_, diagram):
             diagram.pointsOfPrimitive(rect, direction: direction, primitiveType: primitiveType, points: &points)
         }
     }
@@ -217,12 +228,15 @@ extension CGContext {
     public func draw(_ primitive: Primitive, in frame: CGRect) {
         switch primitive {
         case .rectangle:
+            stroke(frame)
             fill(frame)
         case .ellipse:
+            strokeEllipse(in: frame)
             fillEllipse(in: frame)
-        case .text(let text):
-            let font = UIFont.systemFont(ofSize: 12)
-            let attributes = [NSAttributedStringKey.font: font]
+        case let .text(text, textAttribute):
+            let font = textAttribute[.font] as! UIFont
+            let color = textAttribute[.textColor] as! UIColor
+            let attributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: color]
             let attributedText = NSAttributedString(string: text, attributes: attributes)
             attributedText.draw(in: frame)
         case let .line(startPoint, endPoint):
@@ -252,9 +266,14 @@ extension CGContext {
             let (upBounds, downBounds) = bounds.split(ratio: up.size.height/diagram.size.height, edge: .minYEdge)
             draw(up, in: upBounds)
             draw(down, in: downBounds)
-        case let .attribute(.fillColor(color), diagram):
+        case let .attribute(attribute, diagram):
             saveGState()
-            color.set()
+            switch attribute {
+            case let .fillColor(color):
+                color.setFill()
+            case let .strokeColor(color):
+                color.setStroke()
+            }
             draw(diagram, in: bounds)
             restoreGState()
         }
@@ -310,13 +329,13 @@ precedencegroup HorizontalCombination {
 
 infix operator ||| : HorizontalCombination
 
-func |||(l: Diagram, r: Diagram) -> Diagram {
+public func |||(l: Diagram, r: Diagram) -> Diagram {
     return .beside(l, r)
 }
 
 infix operator --- : VerticalCombination
 
-func ---(top: Diagram, bottom: Diagram) -> Diagram {
+public func ---(top: Diagram, bottom: Diagram) -> Diagram {
     return .below(top, bottom)
 }
 

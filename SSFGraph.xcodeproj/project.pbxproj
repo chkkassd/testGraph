@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		911F4F3020C5160A00A9E905 /* SSFGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */; };
 		915585DA20AE7FDE0044E4DD /* SSFBarGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */; };
 		915585DC20AEA7180044E4DD /* SSFLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */; };
 		915585DE20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFGraphView.swift; sourceTree = "<group>"; };
 		915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFBarGraphProtocol.swift; sourceTree = "<group>"; };
 		915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFLineGraphView.swift; sourceTree = "<group>"; };
 		915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFLineGraphProtocol.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				918C454320A2EEB700F4AE25 /* ViewController.swift */,
 				918C454520A2EEB800F4AE25 /* Main.storyboard */,
 				918C455720A2F6C000F4AE25 /* SSFGraph.swift */,
+				911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */,
 				918C455920AC2F5B00F4AE25 /* SSFBarGraphView.swift */,
 				915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */,
 				915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */,
@@ -185,6 +188,7 @@
 				918C455820A2F6C000F4AE25 /* SSFGraph.swift in Sources */,
 				918C455A20AC2F5B00F4AE25 /* SSFBarGraphView.swift in Sources */,
 				915585DE20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift in Sources */,
+				911F4F3020C5160A00A9E905 /* SSFGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

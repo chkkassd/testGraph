@@ -10,21 +10,52 @@ import UIKit
 
 class SSFBarGraphView: UIView, SSFBarGraphProtocol {
     
-    override init(frame: CGRect) {
+    //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
+    public init(frame: CGRect, sourceData: [(String, Double)]) {
         super.init(frame: frame)
+        self.sourceData = sourceData
+        self.backgroundColor = UIColor.clear
+        combinedDiagram = barGraph(sourceData: sourceData, barColor: barColor, textColor: textColor, textFont: textFont, strokeColor: strokeColor)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private var combinedDiagram: Diagram?
+    var combinedDiagram: Diagram?
     
-    //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
-    convenience public init(frame: CGRect, backgroundColor: UIColor, sourceData: [(String, Double)]) {
-        self.init(frame: frame)
-        self.backgroundColor = backgroundColor
-        combinedDiagram = barGraph(sourceData: sourceData)
+    private var sourceData: [(String, Double)]?
+    
+    public var barColor: UIColor = UIColor.black {
+        didSet {
+            guard barColor != oldValue, let data = sourceData else {return}
+            combinedDiagram = barGraph(sourceData: data, barColor: barColor, textColor: textColor, textFont: textFont, strokeColor: strokeColor)
+            setNeedsDisplay()
+        }
+    }
+    
+    public var strokeColor: UIColor = UIColor.black {
+        didSet {
+            guard barColor != oldValue, let data = sourceData else {return}
+            combinedDiagram = barGraph(sourceData: data, barColor: barColor, textColor: textColor, textFont: textFont, strokeColor: strokeColor)
+            setNeedsDisplay()
+        }
+    }
+
+    public var textColor: UIColor = UIColor.black {
+        didSet {
+            guard textColor != oldValue, let data = sourceData else {return}
+            combinedDiagram = barGraph(sourceData: data, barColor: barColor, textColor: textColor, textFont: textFont, strokeColor: strokeColor)
+            setNeedsDisplay()
+        }
+    }
+    
+    public var textFont: UIFont = UIFont.systemFont(ofSize: 12.0) {
+        didSet {
+            guard textFont != oldValue, let data = sourceData else {return}
+            combinedDiagram = barGraph(sourceData: data, barColor: barColor, textColor: textColor, textFont: textFont, strokeColor: strokeColor)
+            setNeedsDisplay()
+        }
     }
     
     override func draw(_ rect: CGRect) {

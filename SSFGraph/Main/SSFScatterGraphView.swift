@@ -8,26 +8,33 @@
 
 import UIKit
 
-class SSFScatterGraphView: UIView, SSFScatterGraphViewProtocol {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
+    
+    private var drawScatters: [(CGPoint, CGFloat)]?
+    
+    override var barColor: UIColor {
+        get {
+            return UIColor.clear
+        }
+        set {}
+    }
+
+    override var strokeColor: UIColor {
+        get {
+            return UIColor.clear
+        }
+        set {}
+    }
+    
+    //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
+    override public init(frame: CGRect, sourceData: [(String, Double)]) {
+        super.init(frame: frame, sourceData: sourceData)
+        guard let diagram = combinedDiagram else { return }
+        drawScatters = scatterGraph(diagram: diagram, rect: self.bounds)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    private var combinedDiagram: Diagram?
-    
-    private var drawScatters: [(CGPoint, CGFloat)]?
-    
-    //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
-    convenience public init(frame: CGRect, backgroundColor: UIColor, sourceData: [(String, Double)]) {
-        self.init(frame: frame)
-        self.backgroundColor = backgroundColor
-        combinedDiagram = barGraph(sourceData: sourceData)
-        guard let diagram = combinedDiagram else { return }
-        drawScatters = scatterGraph(diagram: diagram, rect: self.bounds)
     }
     
     override func draw(_ rect: CGRect) {
