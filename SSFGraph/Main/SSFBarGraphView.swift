@@ -26,6 +26,7 @@ class SSFBarGraphView: UIView, SSFBarGraphProtocol {
     
     private var sourceData: [(String, Double)]?
     
+    //color of bar graph
     public var barColor: UIColor = UIColor.black {
         didSet {
             guard barColor != oldValue, let data = sourceData else {return}
@@ -34,6 +35,7 @@ class SSFBarGraphView: UIView, SSFBarGraphProtocol {
         }
     }
     
+    //color of bar graph's path
     public var strokeColor: UIColor = UIColor.black {
         didSet {
             guard barColor != oldValue, let data = sourceData else {return}

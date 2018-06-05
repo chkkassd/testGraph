@@ -26,6 +26,27 @@ class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
         set {}
     }
     
+    public var scatterColor: UIColor = UIColor.black {
+        didSet {
+            if scatterColor != oldValue {
+                setNeedsDisplay()
+            }
+        }
+    }
+    
+    public var scatterType: ScatterType = .circle {
+        didSet {
+            if scatterType.rawValue != oldValue.rawValue {
+                setNeedsDisplay()
+            }
+        }
+    }
+    
+    public enum ScatterType: Int {
+        case circle = 1
+        case square
+    }
+    
     //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
     override public init(frame: CGRect, sourceData: [(String, Double)]) {
         super.init(frame: frame, sourceData: sourceData)
@@ -41,17 +62,22 @@ class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
         guard let diagram = combinedDiagram, let scatters = drawScatters else {return}
         let context = UIGraphicsGetCurrentContext()
         context?.draw(diagram, in: rect)
-        context?.draw(scatters: scatters)
+        context?.draw(scatters: scatters, scatterColor: scatterColor, scatterType: scatterType)
     }
 }
 
 extension CGContext {
-    func draw(scatters: [(CGPoint, CGFloat)]) {
+    func draw(scatters: [(CGPoint, CGFloat)], scatterColor: UIColor, scatterType: SSFScatterGraphView.ScatterType) {
         guard scatters.count > 0 else {return}
         saveGState()
-        UIColor.black.set()
+        scatterColor.set()
         scatters.forEach { (point, radius) in
-            fillEllipse(in: CGRect(x:point.x - radius/6 , y: point.y - radius/6, width: radius/3, height: radius/3))
+            switch scatterType {
+            case .circle:
+                fillEllipse(in: CGRect(x:point.x - radius/6 , y: point.y - radius/6, width: radius/3, height: radius/3))
+            case .square:
+                fill(CGRect(x:point.x - radius/6 , y: point.y - radius/6, width: radius/3, height: radius/3))
+            }
         }
         restoreGState()
     }

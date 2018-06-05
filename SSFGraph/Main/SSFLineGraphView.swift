@@ -26,6 +26,30 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
         set {}
     }
     
+    public var lineWidth: CGFloat = 1.0 {
+        didSet {
+            if lineWidth != oldValue {
+                setNeedsDisplay()
+            }
+        }
+    }
+    
+    public var lineColor: UIColor = UIColor.black {
+        didSet {
+            if lineColor != oldValue {
+                setNeedsDisplay()
+            }
+        }
+    }
+    
+    public var isOutstanding: Bool = false {
+        didSet {
+            if isOutstanding != oldValue {
+                setNeedsDisplay()
+            }
+        }
+    }
+    
     //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
     override public init(frame: CGRect, sourceData: [(String, Double)]) {
         super.init(frame: frame, sourceData: sourceData)
@@ -41,20 +65,29 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
         guard let diagram = combinedDiagram, let points = drawPoints else {return}
         let context = UIGraphicsGetCurrentContext()
         context?.draw(diagram, in: rect)
-        context?.draw(points: points)
+        context?.draw(points: points, lineColor: lineColor, lineWidth: lineWidth, isOutStanding: isOutstanding)
     }
 }
 
 extension CGContext {
-    func draw(points: [CGPoint]) {
+    func draw(points: [CGPoint], lineColor: UIColor, lineWidth: CGFloat, isOutStanding: Bool) {
         guard points.count > 0 else {return}
         saveGState()
-        UIColor.black.set()
+        lineColor.set()
+        setLineWidth(lineWidth)
+        setLineJoin(.round)
+        setLineCap(.round)
         self.move(to: points.first!)
         points.dropFirst().forEach {
             self.addLine(to: $0)
         }
         self.strokePath()
+        
+        if isOutStanding {
+            points.forEach { point in
+                fillEllipse(in: CGRect(x: point.x - lineWidth, y: point.y - lineWidth, width: 2.0*lineWidth, height: 2.0*lineWidth))
+            }
+        }
         restoreGState()
     }
 }
