@@ -9,9 +9,11 @@
 import UIKit
 
 class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
-        
+    
+    //Draw the line with these points
     private var drawPoints: [CGPoint]?
     
+    //bar color is awayls clear in line graph
     override var barColor: UIColor {
         get {
             return UIColor.clear
@@ -19,6 +21,7 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
         set {}
     }
     
+    //stroke color is awayls clear in line graph
     override var strokeColor: UIColor {
         get {
             return UIColor.clear
@@ -42,6 +45,7 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
         }
     }
     
+    //Highlight the line join if true, otherwise do not highlight
     public var isOutstanding: Bool = false {
         didSet {
             if isOutstanding != oldValue {
@@ -70,6 +74,7 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
 }
 
 extension CGContext {
+    //draw the line with attribute
     func draw(points: [CGPoint], lineColor: UIColor, lineWidth: CGFloat, isOutStanding: Bool) {
         guard points.count > 0 else {return}
         saveGState()

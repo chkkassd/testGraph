@@ -10,8 +10,10 @@ import UIKit
 
 class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
     
+    //draw the scatters with these source
     private var drawScatters: [(CGPoint, CGFloat)]?
     
+    //bar color is awayls clear in line graph
     override var barColor: UIColor {
         get {
             return UIColor.clear
@@ -19,6 +21,7 @@ class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
         set {}
     }
 
+    //stroke color is awayls clear in line graph
     override var strokeColor: UIColor {
         get {
             return UIColor.clear
@@ -67,6 +70,7 @@ class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
 }
 
 extension CGContext {
+    //draw the scatters with attribute
     func draw(scatters: [(CGPoint, CGFloat)], scatterColor: UIColor, scatterType: SSFScatterGraphView.ScatterType) {
         guard scatters.count > 0 else {return}
         saveGState()

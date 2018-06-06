@@ -15,6 +15,7 @@ protocol SSFLineGraphProtocol {
 
 extension SSFLineGraphProtocol {
 
+    //return every rectangle's top center point
     func lineGraph(diagram: Diagram, rect: CGRect) -> [CGPoint] {
         var points = [(CGPoint, CGRect)]()
         diagram.pointsOfPrimitive(rect, direction: .topBorder, primitiveType: .rectangle, points: &points)
