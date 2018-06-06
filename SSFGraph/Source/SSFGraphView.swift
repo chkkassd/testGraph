@@ -8,12 +8,12 @@
 
 import UIKit
 
-class SSFGraphView: UIView {
+public class SSFGraphView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -30,7 +30,7 @@ class SSFGraphView: UIView {
 //        combinedDiagram = barGraph(sourceData: sourceData)
     }
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         guard let diagram = combinedDiagram else {return}
         let context = UIGraphicsGetCurrentContext()
         context?.draw(diagram, in: rect)

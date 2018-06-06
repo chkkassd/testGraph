@@ -7,31 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		911F4F3020C5160A00A9E905 /* SSFGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */; };
-		915585DA20AE7FDE0044E4DD /* SSFBarGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */; };
-		915585DC20AEA7180044E4DD /* SSFLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */; };
-		915585DE20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */; };
-		915585E020C001950044E4DD /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DF20C001940044E4DD /* Utility.swift */; };
-		915585E220C0E8B10044E4DD /* SSFScatterGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */; };
-		915585E420C0E9120044E4DD /* SSFScatterGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */; };
+		911F4F3B20C7822B00A9E905 /* SSFGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 911F4F3920C7822B00A9E905 /* SSFGraph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		911F4F4420C784A900A9E905 /* SSFGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C455720A2F6C000F4AE25 /* SSFGraph.swift */; };
+		911F4F4520C784A900A9E905 /* SSFLineGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */; };
+		911F4F4620C784A900A9E905 /* SSFBarGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */; };
+		911F4F4720C784A900A9E905 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DF20C001940044E4DD /* Utility.swift */; };
+		911F4F4820C784A900A9E905 /* SSFBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C455920AC2F5B00F4AE25 /* SSFBarGraphView.swift */; };
+		911F4F4920C784A900A9E905 /* SSFLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */; };
+		911F4F4A20C784A900A9E905 /* SSFScatterGraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */; };
+		911F4F4B20C784A900A9E905 /* SSFGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */; };
+		911F4F4C20C784A900A9E905 /* SSFScatterGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */; };
 		918C454220A2EEB700F4AE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C454120A2EEB700F4AE25 /* AppDelegate.swift */; };
 		918C454420A2EEB800F4AE25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C454320A2EEB700F4AE25 /* ViewController.swift */; };
 		918C454720A2EEB800F4AE25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 918C454520A2EEB800F4AE25 /* Main.storyboard */; };
 		918C454920A2EEB900F4AE25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 918C454820A2EEB900F4AE25 /* Assets.xcassets */; };
 		918C454C20A2EEB900F4AE25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 918C454A20A2EEB900F4AE25 /* LaunchScreen.storyboard */; };
-		918C455820A2F6C000F4AE25 /* SSFGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C455720A2F6C000F4AE25 /* SSFGraph.swift */; };
-		918C455A20AC2F5B00F4AE25 /* SSFBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C455920AC2F5B00F4AE25 /* SSFBarGraphView.swift */; };
+		91D5CFF520C7C32600F503EC /* SSFGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911F4F3720C7822B00A9E905 /* SSFGraph.framework */; };
+		91D5CFF620C7C32600F503EC /* SSFGraph.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 911F4F3720C7822B00A9E905 /* SSFGraph.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		91D5CFF720C7C32600F503EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 918C453620A2EEB700F4AE25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 911F4F3620C7822B00A9E905;
+			remoteInfo = SSFGraph;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91D5CFF920C7C32600F503EC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				91D5CFF620C7C32600F503EC /* SSFGraph.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFGraphView.swift; sourceTree = "<group>"; };
+		911F4F3720C7822B00A9E905 /* SSFGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSFGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		911F4F3920C7822B00A9E905 /* SSFGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSFGraph.h; sourceTree = "<group>"; };
+		911F4F3A20C7822B00A9E905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFBarGraphProtocol.swift; sourceTree = "<group>"; };
 		915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFLineGraphView.swift; sourceTree = "<group>"; };
 		915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFLineGraphProtocol.swift; sourceTree = "<group>"; };
 		915585DF20C001940044E4DD /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFScatterGraphView.swift; sourceTree = "<group>"; };
 		915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFScatterGraphProtocol.swift; sourceTree = "<group>"; };
-		918C453E20A2EEB700F4AE25 /* SSFGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSFGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		918C453E20A2EEB700F4AE25 /* SSFGraphDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSFGraphDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		918C454120A2EEB700F4AE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		918C454320A2EEB700F4AE25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		918C454620A2EEB800F4AE25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,20 +73,63 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		918C453B20A2EEB700F4AE25 /* Frameworks */ = {
+		911F4F3320C7822B00A9E905 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		918C453B20A2EEB700F4AE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D5CFF520C7C32600F503EC /* SSFGraph.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		911F4F3820C7822B00A9E905 /* SSFGraph */ = {
+			isa = PBXGroup;
+			children = (
+				911F4F4D20C784D600A9E905 /* Source */,
+				911F4F4E20C784DE00A9E905 /* Supporting */,
+			);
+			path = SSFGraph;
+			sourceTree = "<group>";
+		};
+		911F4F4D20C784D600A9E905 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				915585DF20C001940044E4DD /* Utility.swift */,
+				918C455720A2F6C000F4AE25 /* SSFGraph.swift */,
+				911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */,
+				918C455920AC2F5B00F4AE25 /* SSFBarGraphView.swift */,
+				915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */,
+				915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */,
+				915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */,
+				915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */,
+				915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		911F4F4E20C784DE00A9E905 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				911F4F3920C7822B00A9E905 /* SSFGraph.h */,
+				911F4F3A20C7822B00A9E905 /* Info.plist */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		918C453520A2EEB700F4AE25 = {
 			isa = PBXGroup;
 			children = (
-				918C454020A2EEB700F4AE25 /* SSFGraph */,
+				918C454020A2EEB700F4AE25 /* SSFGraphDemo */,
+				911F4F3820C7822B00A9E905 /* SSFGraph */,
 				918C453F20A2EEB700F4AE25 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,18 +137,20 @@
 		918C453F20A2EEB700F4AE25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				918C453E20A2EEB700F4AE25 /* SSFGraph.app */,
+				918C453E20A2EEB700F4AE25 /* SSFGraphDemo.app */,
+				911F4F3720C7822B00A9E905 /* SSFGraph.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		918C454020A2EEB700F4AE25 /* SSFGraph */ = {
+		918C454020A2EEB700F4AE25 /* SSFGraphDemo */ = {
 			isa = PBXGroup;
 			children = (
-				918C455620A2F3B800F4AE25 /* Main */,
+				918C454320A2EEB700F4AE25 /* ViewController.swift */,
+				918C454520A2EEB800F4AE25 /* Main.storyboard */,
 				918C455320A2F2DD00F4AE25 /* Supporting */,
 			);
-			path = SSFGraph;
+			path = SSFGraphDemo;
 			sourceTree = "<group>";
 		};
 		918C455320A2F2DD00F4AE25 /* Supporting */ = {
@@ -89,34 +164,28 @@
 			path = Supporting;
 			sourceTree = "<group>";
 		};
-		918C455620A2F3B800F4AE25 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				915585DF20C001940044E4DD /* Utility.swift */,
-				918C454320A2EEB700F4AE25 /* ViewController.swift */,
-				918C454520A2EEB800F4AE25 /* Main.storyboard */,
-				918C455720A2F6C000F4AE25 /* SSFGraph.swift */,
-				911F4F2F20C5160A00A9E905 /* SSFGraphView.swift */,
-				918C455920AC2F5B00F4AE25 /* SSFBarGraphView.swift */,
-				915585D920AE7FDE0044E4DD /* SSFBarGraphProtocol.swift */,
-				915585DB20AEA7180044E4DD /* SSFLineGraphView.swift */,
-				915585DD20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift */,
-				915585E120C0E8B10044E4DD /* SSFScatterGraphView.swift */,
-				915585E320C0E9120044E4DD /* SSFScatterGraphProtocol.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		911F4F3420C7822B00A9E905 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				911F4F3B20C7822B00A9E905 /* SSFGraph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		918C453D20A2EEB700F4AE25 /* SSFGraph */ = {
+		911F4F3620C7822B00A9E905 /* SSFGraph */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 918C455020A2EEB900F4AE25 /* Build configuration list for PBXNativeTarget "SSFGraph" */;
+			buildConfigurationList = 911F4F4020C7822B00A9E905 /* Build configuration list for PBXNativeTarget "SSFGraph" */;
 			buildPhases = (
-				918C453A20A2EEB700F4AE25 /* Sources */,
-				918C453B20A2EEB700F4AE25 /* Frameworks */,
-				918C453C20A2EEB700F4AE25 /* Resources */,
+				911F4F3220C7822B00A9E905 /* Sources */,
+				911F4F3320C7822B00A9E905 /* Frameworks */,
+				911F4F3420C7822B00A9E905 /* Headers */,
+				911F4F3520C7822B00A9E905 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -124,7 +193,26 @@
 			);
 			name = SSFGraph;
 			productName = SSFGraph;
-			productReference = 918C453E20A2EEB700F4AE25 /* SSFGraph.app */;
+			productReference = 911F4F3720C7822B00A9E905 /* SSFGraph.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		918C453D20A2EEB700F4AE25 /* SSFGraphDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 918C455020A2EEB900F4AE25 /* Build configuration list for PBXNativeTarget "SSFGraphDemo" */;
+			buildPhases = (
+				918C453A20A2EEB700F4AE25 /* Sources */,
+				918C453B20A2EEB700F4AE25 /* Frameworks */,
+				918C453C20A2EEB700F4AE25 /* Resources */,
+				91D5CFF920C7C32600F503EC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91D5CFF820C7C32600F503EC /* PBXTargetDependency */,
+			);
+			name = SSFGraphDemo;
+			productName = SSFGraph;
+			productReference = 918C453E20A2EEB700F4AE25 /* SSFGraphDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,6 +225,9 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "赛峰 施";
 				TargetAttributes = {
+					911F4F3620C7822B00A9E905 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
 					918C453D20A2EEB700F4AE25 = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -155,12 +246,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				918C453D20A2EEB700F4AE25 /* SSFGraph */,
+				918C453D20A2EEB700F4AE25 /* SSFGraphDemo */,
+				911F4F3620C7822B00A9E905 /* SSFGraph */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		911F4F3520C7822B00A9E905 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918C453C20A2EEB700F4AE25 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,25 +273,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		911F4F3220C7822B00A9E905 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				911F4F4C20C784A900A9E905 /* SSFScatterGraphView.swift in Sources */,
+				911F4F4A20C784A900A9E905 /* SSFScatterGraphProtocol.swift in Sources */,
+				911F4F4920C784A900A9E905 /* SSFLineGraphView.swift in Sources */,
+				911F4F4720C784A900A9E905 /* Utility.swift in Sources */,
+				911F4F4420C784A900A9E905 /* SSFGraph.swift in Sources */,
+				911F4F4520C784A900A9E905 /* SSFLineGraphProtocol.swift in Sources */,
+				911F4F4820C784A900A9E905 /* SSFBarGraphView.swift in Sources */,
+				911F4F4B20C784A900A9E905 /* SSFGraphView.swift in Sources */,
+				911F4F4620C784A900A9E905 /* SSFBarGraphProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918C453A20A2EEB700F4AE25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				915585E220C0E8B10044E4DD /* SSFScatterGraphView.swift in Sources */,
-				915585DC20AEA7180044E4DD /* SSFLineGraphView.swift in Sources */,
 				918C454420A2EEB800F4AE25 /* ViewController.swift in Sources */,
-				915585DA20AE7FDE0044E4DD /* SSFBarGraphProtocol.swift in Sources */,
-				915585E420C0E9120044E4DD /* SSFScatterGraphProtocol.swift in Sources */,
 				918C454220A2EEB700F4AE25 /* AppDelegate.swift in Sources */,
-				915585E020C001950044E4DD /* Utility.swift in Sources */,
-				918C455820A2F6C000F4AE25 /* SSFGraph.swift in Sources */,
-				918C455A20AC2F5B00F4AE25 /* SSFBarGraphView.swift in Sources */,
-				915585DE20B3AFFF0044E4DD /* SSFLineGraphProtocol.swift in Sources */,
-				911F4F3020C5160A00A9E905 /* SSFGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91D5CFF820C7C32600F503EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 911F4F3620C7822B00A9E905 /* SSFGraph */;
+			targetProxy = 91D5CFF720C7C32600F503EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		918C454520A2EEB800F4AE25 /* Main.storyboard */ = {
@@ -214,6 +328,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		911F4F4120C7822B00A9E905 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MYUZ5TW9JQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_ON_DEMAND_RESOURCES = NO;
+				INFOPLIST_FILE = SSFGraph/Supporting/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ssf.SSFGraph;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		911F4F4220C7822B00A9E905 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MYUZ5TW9JQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_ON_DEMAND_RESOURCES = NO;
+				INFOPLIST_FILE = SSFGraph/Supporting/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ssf.SSFGraph;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		918C454E20A2EEB900F4AE25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -331,10 +507,11 @@
 		918C455120A2EEB900F4AE25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MYUZ5TW9JQ;
-				INFOPLIST_FILE = SSFGraph/Supporting/Info.plist;
+				INFOPLIST_FILE = SSFGraphDemo/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -349,10 +526,11 @@
 		918C455220A2EEB900F4AE25 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MYUZ5TW9JQ;
-				INFOPLIST_FILE = SSFGraph/Supporting/Info.plist;
+				INFOPLIST_FILE = SSFGraphDemo/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,6 +545,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		911F4F4020C7822B00A9E905 /* Build configuration list for PBXNativeTarget "SSFGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				911F4F4120C7822B00A9E905 /* Debug */,
+				911F4F4220C7822B00A9E905 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		918C453920A2EEB700F4AE25 /* Build configuration list for PBXProject "SSFGraph" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -376,7 +563,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		918C455020A2EEB900F4AE25 /* Build configuration list for PBXNativeTarget "SSFGraph" */ = {
+		918C455020A2EEB900F4AE25 /* Build configuration list for PBXNativeTarget "SSFGraphDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				918C455120A2EEB900F4AE25 /* Debug */,

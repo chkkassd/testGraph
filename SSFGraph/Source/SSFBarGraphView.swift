@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SSFBarGraphView: UIView, SSFBarGraphProtocol {
+public class SSFBarGraphView: UIView, SSFBarGraphProtocol {
     
     //sourceData's element is tuple type.(text, value),text represents the bar label,value represents the bar values.
     public init(frame: CGRect, sourceData: [(String, Double)]) {
@@ -18,7 +18,7 @@ class SSFBarGraphView: UIView, SSFBarGraphProtocol {
         combinedDiagram = barGraph(sourceData: sourceData, barColor: barColor, textColor: textColor, textFont: textFont, strokeColor: strokeColor)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -60,7 +60,7 @@ class SSFBarGraphView: UIView, SSFBarGraphProtocol {
         }
     }
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         guard let diagram = combinedDiagram else {return}
         let context = UIGraphicsGetCurrentContext()
         context?.draw(diagram, in: rect)

@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
+public class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
     
     //draw the scatters with these source
     private var drawScatters: [(CGPoint, CGFloat)]?
     
     //bar color is awayls clear in line graph
-    override var barColor: UIColor {
+    override public var barColor: UIColor {
         get {
             return UIColor.clear
         }
@@ -22,7 +22,7 @@ class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
     }
 
     //stroke color is awayls clear in line graph
-    override var strokeColor: UIColor {
+    override public var strokeColor: UIColor {
         get {
             return UIColor.clear
         }
@@ -57,11 +57,11 @@ class SSFScatterGraphView: SSFBarGraphView, SSFScatterGraphViewProtocol {
         drawScatters = scatterGraph(diagram: diagram, rect: self.bounds)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         guard let diagram = combinedDiagram, let scatters = drawScatters else {return}
         let context = UIGraphicsGetCurrentContext()
         context?.draw(diagram, in: rect)

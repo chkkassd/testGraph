@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
+public class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
     
     //Draw the line with these points
     private var drawPoints: [CGPoint]?
     
     //bar color is awayls clear in line graph
-    override var barColor: UIColor {
+    override public var barColor: UIColor {
         get {
             return UIColor.clear
         }
@@ -22,7 +22,7 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
     }
     
     //stroke color is awayls clear in line graph
-    override var strokeColor: UIColor {
+    override public var strokeColor: UIColor {
         get {
             return UIColor.clear
         }
@@ -61,11 +61,11 @@ class SSFLineGraphView: SSFBarGraphView, SSFLineGraphProtocol {
         drawPoints = lineGraph(diagram: diagram, rect: self.bounds)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         guard let diagram = combinedDiagram, let points = drawPoints else {return}
         let context = UIGraphicsGetCurrentContext()
         context?.draw(diagram, in: rect)

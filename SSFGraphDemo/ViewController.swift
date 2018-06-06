@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SSFGraph
 
 class ViewController: UIViewController {
 
